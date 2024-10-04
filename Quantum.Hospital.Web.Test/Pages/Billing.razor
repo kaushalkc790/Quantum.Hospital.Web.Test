@@ -1,0 +1,61 @@
+﻿@page "/billing"
+@using NEAPES.UI.Components.Components.Grid
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h3>Billing</h3>
+
+@if (bills == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+   
+    <NEAPESGridView DataSource="bills">
+        <GridColumns>
+            <GridColumn Heading="Patient Name" Field="@nameof(Bill.PatientName)"/>
+            <GridColumn Heading="Bill Amount" Field="@nameof(Bill.BillAmount)"/>
+            <GridColumn Heading="Services" Field="@nameof(Bill.Services)"/>
+            <GridColumn Heading="Date" Field="@nameof(Bill.Date)"/>
+        </GridColumns>
+    </NEAPESGridView>
+    
+}
+
+@code {
+    private List<Bill> bills;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Fake API call to load billing data
+        await LoadBillingData();
+    }
+
+    private async Task LoadBillingData()
+    {
+        // Simulating billing data
+        bills = new List<Bill>
+        {
+            new Bill { Id = 1, PatientName = "John Doe", BillAmount = 500, Services = "Consultation, X-ray", Date = DateTime.Now },
+            new Bill { Id = 2, PatientName = "Emily Clark", BillAmount = 1200, Services = "Surgery, Medication", Date = DateTime.Now.AddDays(-5) },
+            new Bill { Id = 3, PatientName = "Michael Smith", BillAmount = 800, Services = "Physiotherapy", Date = DateTime.Now.AddDays(-2) }
+        };
+    }
+
+    private void ViewBill(int billId)
+    {
+        // Redirect or handle viewing detailed bill information based on billId
+        // You can create a new page to display full bill details or show a modal.
+        NavigationManager.NavigateTo($"/billing-details/{billId}");
+    }
+
+    public class Bill
+    {
+        public int Id { get; set; }
+        public string PatientName { get; set; }
+        public decimal BillAmount { get; set; }
+        public string Services { get; set; }
+        public DateTime Date { get; set; }
+    }
+}

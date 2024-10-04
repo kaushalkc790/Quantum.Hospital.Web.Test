@@ -1,0 +1,29 @@
+﻿@page "/availableusers"
+@using Quantum.Hospital.Web.Test.Models
+@using Quantum.Hospital.Web.Test.Services
+@using NEAPES.UI.Components.Components.Grid
+@inject  IUserService UserService
+
+
+<h3>AvailableUsers</h3>
+
+
+<NEAPESGridView DataSource="users">
+    <GridColumns>
+        <GridColumn Heading="ID" Field="@nameof(User.Id)"/>
+        <GridColumn Heading="Name" Field="@nameof(User.Name)"/>
+        <GridColumn Heading="Email" Field="@nameof(User.Email)"/>
+        <GridColumn Heading="User Name" Field="@nameof(User.UserName)"/>
+        <GridColumn Heading="Phone" Field="@nameof(User.Phone)"/>
+        <GridColumn Heading="Website" Field="@nameof(User.Website)"/>
+    </GridColumns>
+</NEAPESGridView>
+
+@code {
+    private IEnumerable<User> users;
+
+    protected override async Task OnInitializedAsync()
+    {
+        users = await UserService.GetUsers();
+    }
+}

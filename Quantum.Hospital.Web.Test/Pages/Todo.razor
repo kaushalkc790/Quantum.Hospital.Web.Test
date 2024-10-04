@@ -1,0 +1,52 @@
+﻿@page "/todo"
+
+<PageTitle>Todo</PageTitle>
+
+<h1>Todo (@todos.Count(todo => !todo.IsDone))</h1>
+
+<ul>
+    @foreach (var todo in todos)
+    {
+        <li>
+            <input type="checkbox" @bind="todo.IsDone" />
+            <input @bind="todo.Title" />
+        </li>
+    }
+</ul>
+
+<input placeholder="Something todo" @bind="newTodo" />
+<button @onclick="AddTodo">Add todo</button>
+<button @onclick="CheckAllTodos">Check All</button> <!-- Check All Button -->
+<button @onclick="DeleteCheckedTodos">Delete Selected</button> <!-- Delete Selected Button -->
+@code {
+    private List<TodoItem> todos = new();
+    private string? newTodo;
+
+    // Add a new todo item
+    private void AddTodo()
+    {
+        if (!string.IsNullOrWhiteSpace(newTodo))
+        {
+            todos.Add(new TodoItem { Title = newTodo });
+            newTodo = string.Empty;
+        }
+    }
+
+    // Delete all checked todo items
+    private void DeleteCheckedTodos()
+    {
+        todos = todos.Where(todo => !todo.IsDone).ToList(); // Keep only unchecked items
+    }
+
+    // Check/Uncheck all todos at once
+    private void CheckAllTodos()
+    {
+        bool allChecked = todos.All(todo => todo.IsDone); // Check if all are already checked
+        foreach (var todo in todos)
+        {
+            todo.IsDone = !allChecked; // Toggle the IsDone status for all
+        }
+    }
+
+   
+}

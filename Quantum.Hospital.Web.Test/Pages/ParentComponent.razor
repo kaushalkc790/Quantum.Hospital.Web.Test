@@ -1,0 +1,18 @@
+﻿@page "/parentcomponent"
+
+<h1>Parent child example</h1>
+
+<ChildComponent Title="Panel Title from Parent" OnClickCallback="@ShowMessage">
+    Content of the child component is supplied by the parent component.
+</ChildComponent>
+<p>@message</p>
+ @code {
+
+     private string message;
+
+     private void ShowMessage(MouseEventArgs e)
+     {
+         message = $"This message is from parent component! ({e.ScreenX}:{e.ScreenY})";
+     }
+
+ }

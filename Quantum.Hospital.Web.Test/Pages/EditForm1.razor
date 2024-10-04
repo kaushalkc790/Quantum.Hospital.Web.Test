@@ -1,0 +1,86 @@
+﻿@page "/editform1"
+@using System.ComponentModel.DataAnnotations
+@using NEAPES.UI.Components.Components.TextBox
+@using NEAPES.UI.Components.Components.PasswordInput
+@using NEAPES.UI.Components.Components.Button
+
+
+
+
+    @*<NEAPESTextBox class="form-control" @bind-Value="formModel.Name" Label="Name" EnableRequiredSymbol="true" Placeholder="Enter your name" />
+    <NEAPESTextBox class="form-control" @bind-Value="formModel.Email" Label="Email" EnableRequiredSymbol="true" Placeholder="Enter your email" />
+    <NEAPESPasswordInput class="form-control" @bind-Value="formModel.Password" Label="Password"/>
+    <br/>
+    <NEAPESButton type="submit" ButtonClass="btn-info">Submit</NEAPESButton>*@
+
+<EditForm Model="@formModel" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <!-- Name input -->
+    <div class="form-group">
+        <label for="name">Name</label>
+        <InputText id="name" class="form-control" @bind-Value="formModel.Name" placeholder="Enter your name" />
+    </div>
+
+    <!-- Email input -->
+    <div class="form-group">
+        <label for="email">Email</label>
+        <InputText id="email" type="email" class="form-control" @bind-Value="formModel.Email" placeholder="Enter your email" />
+    </div>
+
+    <!-- Password input -->
+    <div class="form-group">
+        <label for="password">Password</label>
+        <InputText id="password" type="password" class="form-control" @bind-Value="formModel.Password" />
+    </div>
+
+    <br/>
+
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-info">Submit</button>
+
+    <!-- Output section -->
+    @if (!string.IsNullOrEmpty(output))
+    {
+    <div class="form-group">
+        <label>Submit Result:</label>
+        <textarea class="form-control" @bind="output" readonly></textarea>
+    </div>
+    }
+</EditForm>
+
+@code {
+
+    private FormModel formModel = new FormModel();
+    private string output = "";
+
+    protected override void OnInitialized()
+    {
+        formModel.Date = DateTime.Today;
+    }
+
+    private void HandleValidSubmit()
+    {
+        /*process the valid form input*/
+        this.output = $" Form had been submitted with following info: \n Name: {formModel.Name} \n" +
+                      $" Email: {formModel.Email} \n Password: {formModel.Password}";
+    }
+    
+    public class FormModel
+    {
+        [Required]
+        [StringLength(30, ErrorMessage = "Name is too long")]
+        public string Name { get; set; }
+        
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+        
+        [Required]
+        public string Password { get; set; }
+        
+        [Required]
+        public DateTime Date { get; set; }
+    }
+}

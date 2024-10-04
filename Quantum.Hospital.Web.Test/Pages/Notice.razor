@@ -1,0 +1,123 @@
+﻿@page "/notice"
+@layout StudentLayout
+
+@using System.Net.Http.Headers
+@using Microsoft.AspNetCore.Http
+@using Newtonsoft.Json
+@using NEAPES.UI.Components.Components.Grid
+@using NEAPES.UI.Components.Components.ImagePopup
+@using NEAPES.UI.Components.Components.Persona
+@inject HttpClient httpClient
+
+
+<NEAPESGridView EnablePagination="true" PageSize="5" DataSource="posts">
+    <div class="container">
+        <div class="row  align-items-center">
+            @if (posts != null)
+            {
+                    <GridColumns>
+                        <GridColumn>
+                            <Template>
+                                <div class="col-lg-5 col-12 mb-4">
+                                    @{
+                                        var post = context as Post;
+                                    }
+                                    @foreach (var url in post.imageUrls)
+                                    {
+                                        <NEAPESImagePopup ImageUrl="@url" />
+                                    }
+                                </div>
+                            </Template>
+                        </GridColumn>
+                        <GridColumn>
+                            <Template>
+                                <div class="card team-card  align-items-center col-lg-7 col-12 mb-4 mt-4">
+                                        @{
+                                            var post = context as Post;
+                                        }
+                                        <h3  style="font-style:italic; text-align:center;margin-bottom:20px;">
+                                            @post.title
+                                        </h3>
+                                    <div style="text-align:justify;">
+                                        @((MarkupString)(post.notice))
+                                    </div>
+                                    <h6 style="font-style:italic;text-align:center;">
+                                        @post.createdDateTime
+                                    </h6>
+                                </div>
+                            </Template>
+                        </GridColumn>
+                    </GridColumns>
+                
+            }
+        </div>
+    </div>
+    
+    
+</NEAPESGridView>
+
+
+
+@code {
+    
+    private List<Post> posts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            // Set base address and headers (if needed)
+            httpClient.BaseAddress = new Uri("https://scoms-mobile-api.azurewebsites.net/scoms/api/1/news/notices");
+            httpClient.DefaultRequestHeaders.Authorization = 
+                new AuthenticationHeaderValue("Bearer", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiOTgyNzMxNTM2OSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6Imt1c2hhbGtjNzkwQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2dpdmVubmFtZSI6IkthdXNoYWwiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zdXJuYW1lIjoiTmlyb3VsYSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiNjc2YTg3NDItYzk0NC00ZjZiLWIwYzMtZWMwMjYxMTVkMWI5IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbIk9yZ24gQWRtaW4iLCJHZW5lcmFsIEVtcGxveWVlIiwiRHJpdmVyIiwiUGFyZW50cyIsIkVtcGxveWVlIl0sInRlbmFudFJvbGVzIjpbImU2ZDU5ZWZlLWIxNzQtNDM0My04NDQ2LTA4ZGMzZjdhODZjYyIsImNiNzBhYjQ1LWFhMmQtNDhjMi01ZDkxLTA4ZGM1NzllYWE3MSJdLCJUZW5hbnRJRCI6ImE0YzMwNGFkLTQ1ZDYtNDM5Ni1hNTY0LTliMjFkYmU5MDNiYSIsInRlbmFudFVzZXJJZCI6IjQxIiwiZXhwIjoxNzI4NjI0NzA3LCJpc3MiOiJORUFQRVMgUFZULiBMVEQuIiwiYXVkIjoiaHR0cHM6Ly9hcGluZWFwZXMuY29tL2F1dGhvcml6YXRpb24vYXBpLzEvbG9naW4vdXNlcmxvZ2luIn0.rugUjMDQYfEbGKiRcJDf9Rs4YJ3uF3seK2D-V6D8boU");
+
+            // Make the GET request
+            var response = await httpClient.GetAsync(httpClient.BaseAddress);
+
+            // Check if the response is successful
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonData = await response.Content.ReadAsStringAsync();
+                posts = JsonConvert.DeserializeObject<List<Post>>(jsonData);
+            }
+            else
+            {
+                // Handle the error response
+                Console.WriteLine($"Error: {response.StatusCode}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Exception occurred: {ex.Message}");
+        }
+    }
+
+    // This is a sample class representing your Post model. You can adjust it as per your API response.
+    public class Post
+    {
+        
+        public int noticeId { get; set; }
+        public DateTime saveDate { get; set; }
+        public string title { get; set; }
+        public string notice { get; set; }
+        public bool isClosed { get; set; }
+        public int cUserID { get; set; }
+        public bool isUp { get; set; }
+        public string docPath { get; set; }
+        public string videoUrl { get; set; }
+        public string mediaCaption { get; set; }
+        public bool isVideo { get; set; }
+        public IFormFile file { get; set; }
+        public List<string> imageUrls { get; set; }
+        public string userId { get; set; }
+        public DateTime createdDateTime { get; set; }
+        public string mUserId { get; set; }
+        public DateTime mDate { get; set; }
+        public bool isPublished { get; set; }
+        public int audience { get; set; }
+        public int? tenantId { get; set; }
+        //yearId may be deleted or changed
+        public int? officeId { get; set; }
+        public int? countryId { get; set; }
+    }
+}

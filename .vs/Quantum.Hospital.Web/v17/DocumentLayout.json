@@ -1,0 +1,94 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Quantum.Hospital.Web.Test\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Pages\\Login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Pages\\DoctorProfile.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Pages\\Billing.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Pages\\Register.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Layout\\MainLayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DoctorProfile.razor",
+              "DocumentMoniker": "D:\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Pages\\DoctorProfile.razor",
+              "RelativeDocumentMoniker": "..\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Pages\\DoctorProfile.razor",
+              "ToolTip": "D:\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Pages\\DoctorProfile.razor",
+              "RelativeToolTip": "..\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Pages\\DoctorProfile.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADkAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-26T05:48:09.477Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Billing.razor",
+              "DocumentMoniker": "D:\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Pages\\Billing.razor",
+              "RelativeDocumentMoniker": "..\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Pages\\Billing.razor",
+              "ToolTip": "D:\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Pages\\Billing.razor",
+              "RelativeToolTip": "..\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Pages\\Billing.razor",
+              "ViewState": "AQIAACQAAAAAAAAAAAAAAC0AAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-26T05:47:33.053Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Login.razor",
+              "DocumentMoniker": "D:\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Pages\\Login.razor",
+              "RelativeDocumentMoniker": "..\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Pages\\Login.razor",
+              "ToolTip": "D:\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Pages\\Login.razor",
+              "RelativeToolTip": "..\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Pages\\Login.razor",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-26T05:15:42.464Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Register.razor",
+              "DocumentMoniker": "D:\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Pages\\Register.razor",
+              "RelativeDocumentMoniker": "..\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Pages\\Register.razor",
+              "ToolTip": "D:\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Pages\\Register.razor",
+              "RelativeToolTip": "..\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Pages\\Register.razor",
+              "ViewState": "AQIAACQAAAAAAAAAAAAAADcAAABIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-26T05:15:07.8Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "D:\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Layout\\MainLayout.razor",
+              "RelativeDocumentMoniker": "..\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Layout\\MainLayout.razor",
+              "ToolTip": "D:\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Layout\\MainLayout.razor",
+              "RelativeToolTip": "..\\Quantum.Hospital.Web\\Quantum.Hospital.Web\\Layout\\MainLayout.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAABHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-25T08:09:48.382Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+﻿@page "/register"
+@using System.Net.Http.Json
+@using NEAPES.UI.Components.Components.TextBox
+@using NEAPES.UI.Components.Components.PasswordInput
+@using NEAPES.UI.Components.Components.DropdDownList
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<h3>Register</h3>
+
+
+    <NEAPESTextBox Label="Name" @bind-Value="registerModel.Name" EnableRequiredSymbol="true" Placeholder="Enter your name" />
+    
+    <NEAPESTextBox Label="Email" @bind-Value="registerModel.Email" EnableRequiredSymbol="true" Placeholder="Enter your email" />
+
+    @code
+    {
+    public string? Password { get; set; }
+    }
+    <NEAPESPasswordInput @bind-Value="registerModel.Password"  Label="Password" EnableRequiredSymbol="true" Placeholder="Enter your password" />
+
+
+
+    @code{
+    public int SelectedValue { get; set; }
+    public List<RegisterModel> DataSource { get; set; } = new List<RegisterModel>();
+
+    protected override void OnInitialized() 
+    {
+        // Initialization logic goes here
+        DataSource = GetInitialData();
+    }
+
+    private List<RegisterModel> GetInitialData()
+    {
+        // Simulated data fetching logic
+        return new List<RegisterModel> {
+            new RegisterModel { Role = "Doctor" },
+            new RegisterModel { Role = "Patient" },
+            new RegisterModel { Role = "Nurse" },
+            new RegisterModel { Role = "Admin" }
+        };
+    }
+    
+    }
+    <NEAPESDropdownList
+        TValue="int"
+        TItem="RegisterModel"
+        DataSource="DataSource"
+        Width="300px"
+        Label="Role"
+        @bind-SelectedValue="SelectedValue"
+        GetItemText="item => item.Role"
+        GetItemValue="item => item.Id"
+        Placeholder="Role"/>
+
+<button class="btn btn-primary" @onclick="HandleRegister">Register</button>
+
+@if (errorMessage != null)
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
+
+@code {
+    private RegisterModel registerModel = new RegisterModel();
+    private string errorMessage;
+
+    private async Task HandleRegister()
+    {
+        try
+        {
+            var response = await Http.PostAsJsonAsync("api/auth/register", registerModel);
+            if (response.IsSuccessStatusCode)
+            {
+                // Redirect to login after successful registration
+                Navigation.NavigateTo("/login");
+            }
+            else
+            {
+                errorMessage = "Registration failed. Please try again.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Registration failed: {ex.Message}";
+        }
+    }
+
+    public class RegisterModel
+    {
+        public int Id { get; set; }
+        public string? Name { get; set; }
+        public string? Email { get; set; }
+        public string? Password { get; set; }
+        public string? Role { get; set; }
+    }
+}
+

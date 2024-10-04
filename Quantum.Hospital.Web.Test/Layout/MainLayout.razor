@@ -1,0 +1,39 @@
+﻿@inherits LayoutComponentBase
+
+
+@using NEAPES.UI.Components.Components.Layouts
+@using NEAPES.UI.Components.Components.NavBar
+<NEAPESLayout>
+    <NEAPESSidebar>
+        <NEAPESNavBar HeaderText="Hospital Web" ThemeColor="darkblue" ActiveBackgroundColor="lightblue">
+            <NavItem Icon="fa fa-home" Url="/" Text="Home" />
+            <NavItem Icon="fa-solid fa-book" Url="/todo" Text="Todo List" />
+            <NavItem Icon="fa fa-list" Url="/login" Text="Login" />
+            <NavItem Icon="fa fa-list" Url="/register" Text="Sign Up" />
+            <NavItem Icon="fa fa-list" Url="/doctor-profiles" Text="Doctor Profile" />
+            <NavItem Icon="fa fa-list" Url="/billing" Text="Billing" />
+            <NavItem Icon="fa fa-list" Url="/availableusers" Text="Available User" />
+            <NavItem Icon="fa fa-list" Url="/parentcomponent" Text="Event Callback" />
+            <NavItem Icon="fa fa-list" Url="/editform1" Text="Edit Form" />
+        </NEAPESNavBar>
+    </NEAPESSidebar>
+    <NEAPESMainContent>
+        <NEAPESTopHeader Sticky="true" ShowNavbarBrand="true" BackgroundColor="darkblue" Color="white">
+            <NavBarBrand>
+                <h4>Quantum Hospital Web Test</h4>
+            </NavBarBrand>
+            <NavbarContent>
+                <div class="text-end">
+                    <a class="text-white" target="_blank" href="https://mywebsite.com">
+                        <i class="fa fa-globe"></i> Visit Our Website
+                    </a>
+                </div>
+            </NavbarContent>
+        </NEAPESTopHeader>
+        <article class="p-2">
+            <p>@Body</p>
+        </article>
+    </NEAPESMainContent>
+</NEAPESLayout>
+
+

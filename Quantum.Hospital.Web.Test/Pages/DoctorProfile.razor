@@ -1,0 +1,63 @@
+﻿@page "/doctor-profiles"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+<h3>Doctor Profiles</h3>
+
+@if (doctors == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+        @foreach (var doctor in doctors)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">@doctor.Name</h5>
+                        <p class="card-text"><strong>Specialization:</strong> @doctor.Specialization</p>
+                        <p class="card-text"><strong>Contact:</strong> @doctor.Email</p>
+                        <button class="btn btn-primary" @onclick="() => ViewProfile(doctor.Id)">View Profile</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private List<Doctor> doctors;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Fake API call to load doctor profiles
+        await LoadDoctorProfiles();
+    }
+
+    private async Task LoadDoctorProfiles()
+    {
+        // Simulating doctor profiles data
+        doctors = new List<Doctor>
+        {
+            new Doctor { Id = 1, Name = "Dr. John Doe", Specialization = "Cardiologist", Email = "johndoe@hospital.com" },
+            new Doctor { Id = 2, Name = "Dr. Emily Clark", Specialization = "Neurologist", Email = "emilyclark@hospital.com" },
+            new Doctor { Id = 3, Name = "Dr. Michael Smith", Specialization = "Orthopedic Surgeon", Email = "michaelsmith@hospital.com" }
+        };
+    }
+
+    private void ViewProfile(int doctorId)
+    {
+        // Redirect or handle viewing a detailed doctor profile based on doctorId
+        // You can create a new page to display full doctor details or show a modal.
+        NavigationManager.NavigateTo($"/doctor-profile/{doctorId}");
+    }
+
+    public class Doctor
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Specialization { get; set; }
+        public string Email { get; set; }
+    }
+}

@@ -1,0 +1,7 @@
+﻿@page "/routeparam/{info}"
+<h3>The RouteParam is @info</h3>
+
+@code {
+    [Parameter]
+    public string info { get; set; }
+}
